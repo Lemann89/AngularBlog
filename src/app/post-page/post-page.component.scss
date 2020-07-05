@@ -1,0 +1,16 @@
+.post{
+    &-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &-content {
+        padding: 50px 0px;
+    }
+    &-footer{
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

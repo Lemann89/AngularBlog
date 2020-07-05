@@ -1,0 +1,24 @@
+<nav class="navbar bg-primary">
+    <div class="nav-title">
+        Admin Page
+    </div>
+    <div>
+        <ul>
+            <li>
+                <a routerLink="/">Home</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/admin', 'dashboard']">Dashboard</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/admin', 'create']">Create</a>
+            </li>
+            <li>
+                <a href="#" (click)="logout($event)">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
