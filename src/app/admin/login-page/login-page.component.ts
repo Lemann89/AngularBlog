@@ -30,7 +30,7 @@ export class LoginPageComponent implements OnInit {
 
   submitForm(){
     console.log(this.form.value);
-
+    console.log('test');
     const user: User = {
       email: this.form.value.email,
       password: this.form.value.password
