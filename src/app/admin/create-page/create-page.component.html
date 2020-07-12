@@ -1,1 +1,24 @@
-<p>create-page works!</p>
+<div class="create-post">
+  <h1>Create Post</h1>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div>
+      <label for="title">Post title</label>
+      <input id="title" type="text" formControlName="title" />
+    </div>
+    <div>
+      <label for="text">Post content</label>
+      <quill-editor formControlName="text"></quill-editor>
+    </div>
+    <div>
+      <label for="author">Author of post</label>
+      <input id="author" type="text" formControlName="author" />
+    </div>
+    <button
+      class="btn btn-block btn-dark"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Publish
+    </button>
+  </form>
+</div>

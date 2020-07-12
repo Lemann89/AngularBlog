@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from 'src/app/shared/interfaces';
 
 @Component({
@@ -10,10 +10,15 @@ import { User } from 'src/app/shared/interfaces';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   form: FormGroup;
   isSubmit: boolean = false;
+  message: string;
 
   buildForm() {
     this.form = new FormGroup({
@@ -50,6 +55,13 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['loginAgain']) {
+        this.message = 'Please enter email and password';
+      } else if (params['authFailed']) {
+        this.message = 'Please enter email and password';
+      }
+    });
     this.buildForm();
   }
 }
