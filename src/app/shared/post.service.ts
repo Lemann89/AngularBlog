@@ -20,4 +20,22 @@ export class PostService {
       })
     );
   }
+
+  getAll(): Observable<Post[]> {
+    return this.http.get(`${environment.dataBaseUrl}/posts.json`).pipe(
+      map((response: { [key: string]: any }) => {
+        return Object.keys(response).map((key) => ({
+          ...response[key],
+          id: key,
+          date: new Date(response[key].date),
+        }));
+      })
+    );
+  }
+
+  remove(id: string): Observable<void> {
+    return this.http.delete<void>(
+      `${environment.dataBaseUrl}/posts/${id}.json`
+    );
+  }
 }
