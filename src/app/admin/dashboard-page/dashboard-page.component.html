@@ -1,11 +1,6 @@
 <div *ngIf="posts.length; else loading">
   <div class="form-control">
-    <input
-      type="text"
-      placeholder="Search"
-      class="search-input"
-      [(ngModel)]="searchStr"
-    />
+    <input type="text" placeholder="Search" class="search-input" [(ngModel)]="searchStr" />
   </div>
   <table>
     <thead>
@@ -22,12 +17,9 @@
         <td>{{ idx + 1 }}</td>
         <td>{{ post.author }}</td>
         <td>{{ post.title }}</td>
-        <td>{{ post.date | date: "medium" }}</td>
-        <button
-          class="btn btn-dark"
-          [routerLink]="['/admin', 'post', post.id, 'edit']"
-        >
-          Open
+        <td>{{ post.date | date: "medium":null:'ru' }}</td>
+        <button class="btn btn-dark" [routerLink]="['/admin', 'post', post.id, 'edit']">
+          Edit
         </button>
         <button class="btn btn-danger" (click)="remove(post.id)">
           Delete

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from 'src/app/shared/post.service';
 import { Post } from 'src/app/shared/interfaces';
-import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -10,7 +10,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./dashboard-page.component.scss'],
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
-  constructor(public postSerice: PostService) {}
+  constructor(
+    public postSerice: PostService,
+    private alertService: AlertService
+  ) {}
 
   posts: Post[] = [];
   postSub: Subscription;
@@ -26,6 +29,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   remove(id: string) {
     this.deleteSub = this.postSerice.remove(id).subscribe(() => {
       this.posts = this.posts.filter((post) => post.id !== id);
+      this.alertService.danger('Post was removed');
     });
   }
 

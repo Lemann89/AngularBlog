@@ -1,8 +1,14 @@
-<app-post></app-post>
-<app-post></app-post>
-<app-post></app-post>
-<app-post></app-post>
-<app-post></app-post>
-<app-post></app-post>
-<app-post></app-post>
+<div class="posts" *ngIf="post$ | async as posts; else loading">
+  <app-post *ngFor="let post of posts" [post]="post"></app-post>
+</div>
 
+<ng-template #loading>
+  <div class="text-center">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>

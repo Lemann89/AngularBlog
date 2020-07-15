@@ -1,20 +1,15 @@
 <div class="card">
-    <div class="card-header">
-        <h2>My post</h2>
-        <small>Vlad Korotkov</small>
-    </div>
-    <div class="card-content">
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Temporibus itaque laborum facilis possimus sapiente sint 
-            consequatur nobis eum explicabo illum!
-        </p>
-    </div>
-    <div class="card-footer">
-        <button
-            [routerLink]="['post/', 1212]" 
-            class="btn btn-dark">
-            Open
-        </button>
-        <small>25.04.2020</small>
-    </div>
+  <div class="card-header">
+    <h2> {{ post.title }} </h2>
+    <small> {{ post.author }} </small>
+  </div>
+  <div class="card-content">
+    <p class="size"> {{ post.text }}</p>
+  </div>
+  <div class="card-footer">
+    <button [routerLink]="['post/', post.id]" class="btn btn-dark">
+      Open
+    </button>
+    <small> {{ post.date | date:'dd:MM:yy' }} </small>
+  </div>
 </div>
