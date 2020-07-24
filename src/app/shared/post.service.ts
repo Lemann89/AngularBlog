@@ -32,7 +32,6 @@ export class PostService {
       })
     );
   }
-
   getById(id: string): Observable<Post> {
     return this.http
       .get<Post>(`${environment.dataBaseUrl}/posts/${id}.json`)
@@ -46,13 +45,11 @@ export class PostService {
         })
       );
   }
-
   remove(id: string): Observable<void> {
     return this.http.delete<void>(
       `${environment.dataBaseUrl}/posts/${id}.json`
     );
   }
-
   update(post: Post): Observable<Post> {
     return this.http.patch<Post>(
       `${environment.dataBaseUrl}/posts/${post.id}.json`,
