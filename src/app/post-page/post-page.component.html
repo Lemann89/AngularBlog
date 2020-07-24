@@ -1,21 +1,28 @@
-<div class="post">
-    <div class="post-header">
-        <h1 class="post-title">
-            My post
-        </h1>
-        <button 
-            routerLink="/"
-            class="btn btn-dark"
-        >
-            Home page
-        </button>
-    </div>
-    <div class="post-content">
-        <p class="post-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde nemo consequatur laborum nihil placeat. Repellendus veritatis ipsam, deserunt officiis quis velit vero quasi quod corrupti ea iste sed delectus laboriosam ratione facere aliquam dignissimos soluta cupiditate tempore ut officia? Molestias cum saepe autem ad reiciendis deleniti, animi facilis voluptate delectus?</p>
-    </div>
-    <div class="post-footer">
-        <small>Author</small>
-        <small>25.06.2020</small>
-    </div>
+<div class="post" *ngIf="post$ | async as post; else loading">
+  <div class="post-header">
+    <h1 class="post-title">
+      {{ post.title }}
+    </h1>
+    <button routerLink="/" class="btn btn-dark">
+      Home page
+    </button>
+  </div>
+  <div class="post-content">
+    <quill-view-html [content]="post.text"></quill-view-html>
+  </div>
+  <div class="post-footer">
+    <small> {{ post.author }} </small>
+    <small> {{ post.date | date:"medium":null:'ru' }} </small>
+  </div>
 </div>
 
+<ng-template #loading>
+  <div class="text-center">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>
